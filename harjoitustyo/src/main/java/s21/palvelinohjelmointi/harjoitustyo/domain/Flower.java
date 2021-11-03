@@ -127,7 +127,7 @@ public class Flower {
 
 	@Override
 	public String toString() {
-		return "Flower [id = " + id + ", name = " + name + ", info = " + info + ", price = " + price + "category = " + flowercategory + "]";
+		return "Flower [id = " + id + ", name = " + name + ", info = " + info + ", price = " + price + ", category = " + flowercategory.getName() + "]";
 	}
 	
 

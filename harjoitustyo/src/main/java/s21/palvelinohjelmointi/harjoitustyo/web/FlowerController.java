@@ -1,16 +1,19 @@
 package s21.palvelinohjelmointi.harjoitustyo.web;
 
-import java.util.Optional;
+import java.util.Optional;	
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import s21.palvelinohjelmointi.harjoitustyo.domain.FlowercategoryRepository;
 import s21.palvelinohjelmointi.harjoitustyo.domain.Flower;
@@ -92,8 +95,9 @@ public class FlowerController {
 		return "redirect:flowershop";
 	}
 	
-	
+	//Method stopped working when I added PreAuthorization, can´t figure it out
 	@GetMapping("/delete/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String deleteFlower(@PathVariable("id") Long FlowerId, Model model) {
 		
 		repository.deleteById(FlowerId);
